@@ -216,7 +216,7 @@ class TestHistoryDisplay:
             },
             {
                 "id": "20260401_201329_d85961",
-                "title": "Checking Running Hermes Agent",
+                "title": "Checking Running AjouLLM Agent",
                 "preview": "check running gateways for hermes agent",
                 "last_active": 0,
             },
@@ -226,7 +226,7 @@ class TestHistoryDisplay:
         output = capsys.readouterr().out
 
         assert "No messages in the current chat yet" in output
-        assert "Checking Running Hermes Agent" in output
+        assert "Checking Running AjouLLM Agent" in output
         assert "20260401_201329_d85961" in output
         assert "/resume" in output
         assert "Current preview" not in output
@@ -244,7 +244,7 @@ class TestHistoryDisplay:
             },
             {
                 "id": "20260401_201329_d85961",
-                "title": "Checking Running Hermes Agent",
+                "title": "Checking Running AjouLLM Agent",
                 "preview": "check running gateways for hermes agent",
                 "last_active": 0,
             },
@@ -254,7 +254,7 @@ class TestHistoryDisplay:
         output = capsys.readouterr().out
 
         assert "Recent sessions" in output
-        assert "Checking Running Hermes Agent" in output
+        assert "Checking Running AjouLLM Agent" in output
         assert "Use /resume <session id or title> to continue" in output
 
 

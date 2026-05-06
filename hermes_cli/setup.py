@@ -2992,6 +2992,11 @@ def run_setup_wizard(args):
     config = load_config()
     hermes_home = get_hermes_home()
 
+    # Detect non-interactive environments (headless SSH, Docker, CI/CD)
+    non_interactive = getattr(args, 'non_interactive', False)
+    if not non_interactive and not is_interactive_stdin():
+        non_interactive = True
+
     # ── AjouLLM Exclusive Setup ──
     if not getattr(args, "section", None) and not non_interactive:
         print()
@@ -3034,11 +3039,6 @@ def run_setup_wizard(args):
             _backup_path = None
     else:
         _backup_path = None
-
-    # Detect non-interactive environments (headless SSH, Docker, CI/CD)
-    non_interactive = getattr(args, 'non_interactive', False)
-    if not non_interactive and not is_interactive_stdin():
-        non_interactive = True
 
     if non_interactive:
         print_noninteractive_setup_guidance(
