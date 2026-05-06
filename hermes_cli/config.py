@@ -47,6 +47,7 @@ _RAW_CONFIG_CACHE: Dict[str, Tuple[int, int, Dict[str, Any]]] = {}
 _EXTRA_ENV_KEYS = frozenset({
     "OPENAI_API_KEY", "OPENAI_BASE_URL",
     "ANTHROPIC_API_KEY", "ANTHROPIC_TOKEN",
+    "AJOULLM_API_KEY",
     "DISCORD_HOME_CHANNEL", "DISCORD_HOME_CHANNEL_NAME",
     "TELEGRAM_HOME_CHANNEL", "TELEGRAM_HOME_CHANNEL_NAME",
     "SLACK_HOME_CHANNEL", "SLACK_HOME_CHANNEL_NAME",
@@ -384,8 +385,14 @@ def _ensure_hermes_home_managed(home: Path):
 # =============================================================================
 
 DEFAULT_CONFIG = {
-    "model": "",
-    "providers": {},
+    "model": "claude-sonnet-4-6",
+    "providers": {
+        "ajoullm": {
+            "api_key": "${AJOULLM_API_KEY}",
+            "base_url": "https://factchat-cloud.mindlogic.ai/v1/gateway",
+        }
+    },
+    "provider": "ajoullm",
     "fallback_providers": [],
     "credential_pool_strategies": {},
     "toolsets": ["hermes-cli"],
@@ -780,7 +787,7 @@ DEFAULT_CONFIG = {
         "final_response_markdown": "strip",  # render | strip | raw
         "inline_diffs": True,     # Show inline diff previews for write actions (write_file, patch, skill_manage)
         "show_cost": False,       # Show $ cost in the status bar (off by default)
-        "skin": "default",
+        "skin": "ajou",
         # UI language for static user-facing messages (approval prompts, a
         # handful of gateway slash-command replies).  Does NOT affect agent
         # responses, log lines, tool outputs, or slash-command descriptions.
@@ -1327,6 +1334,13 @@ REQUIRED_ENV_VARS = {}
 # Optional environment variables that enhance functionality
 OPTIONAL_ENV_VARS = {
     # ── Provider (handled in provider selection, not shown in checklists) ──
+    "AJOULLM_API_KEY": {
+        "description": "Ajou University LLM API Gateway Key (Mindlogic)",
+        "prompt": "Ajou LLM API Key",
+        "url": "https://ajoullm.ajou.ac.kr/dashboard/chat",
+        "password": True,
+        "category": "provider",
+    },
     "NOUS_BASE_URL": {
         "description": "Nous Portal base URL override",
         "prompt": "Nous Portal base URL (leave empty for default)",

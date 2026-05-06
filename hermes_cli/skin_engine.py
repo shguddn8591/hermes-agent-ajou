@@ -636,6 +636,79 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
 [#F29C38]⠀⠀⠀⠀⠀⠀⠀⣼⡟⠀⠀⢻⣧⠀⠀⠀⠀⠀⠀⠀⠀[/]
 [dim #7A3511]⠀⠀⠀⠀⠀⠀⠀tail flame lit⠀⠀⠀⠀⠀⠀⠀⠀[/]""",
     },
+    "ajou": {
+        "name": "ajou",
+        "description": "Ajou University Premium — cobalt blue and gold",
+        "colors": {
+            "banner_border": "#0041AD",
+            "banner_title": "#E6B800",
+            "banner_accent": "#81D4FA",
+            "banner_dim": "#002F87",
+            "banner_text": "#E3F2FD",
+            "ui_accent": "#E6B800",
+            "ui_label": "#81D4FA",
+            "ui_ok": "#4caf50",
+            "ui_error": "#ef5350",
+            "ui_warn": "#ffa726",
+            "prompt": "#E3F2FD",
+            "input_rule": "#0041AD",
+            "response_border": "#E6B800",
+            "status_bar_bg": "#001A4D",
+            "status_bar_text": "#E3F2FD",
+            "status_bar_strong": "#E6B800",
+            "status_bar_dim": "#0041AD",
+            "status_bar_good": "#81D4FA",
+            "status_bar_warn": "#E6B800",
+            "status_bar_bad": "#0041AD",
+            "status_bar_critical": "#EF5350",
+            "session_label": "#E6B800",
+            "session_border": "#0041AD",
+        },
+        "spinner": {
+            "waiting_faces": ["(📖)", "(🎓)", "(🔍)", "(💡)", "(✨)"],
+            "thinking_faces": ["(🧠)", "(⚡)", "(🔭)", "(💬)", "(🔥)"],
+            "thinking_verbs": [
+                "analyzing literature", "calculating impact", "synthesizing knowledge",
+                "mentoring session", "grading results", "designing solutions",
+                "navigating library", "academic reasoning",
+            ],
+            "wings": [
+                ["⟪🎓", "🎓⟫"],
+                ["⟪✨", "✨⟫"],
+                ["⟪📖", "📖⟫"],
+                ["⟪🔥", "🔥⟫"],
+            ],
+        },
+        "branding": {
+            "agent_name": "Ajou LLM Agent",
+            "welcome": "Welcome to Ajou LLM Agent! 아주대학교 학생 여러분 환영합니다.",
+            "goodbye": "Good luck with your studies! 🎓",
+            "response_label": " 🎓 Ajou ",
+            "prompt_symbol": "🎓",
+            "help_header": "(🎓) Ajou LLM Commands",
+        },
+        "tool_prefix": "│",
+        "banner_logo": """[bold #E6B800] █████╗      ██╗ ██████╗ ██╗   ██╗      ██╗     ██╗     ███╗   ███╗      █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
+[bold #E6B800]██╔══██╗     ██║██╔═══██╗██║   ██║      ██║     ██║     ████╗ ████║     ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
+[#81D4FA]███████║     ██║██║   ██║██║   ██║█████╗██║     ██║     ██╔████╔██║█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
+[#81D4FA]██╔══██║██   ██║██║   ██║██║   ██║╚════╝██║     ██║     ██║╚██╔╝██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
+[#0041AD]██║  ██║╚█████╔╝╚██████╔╝╚██████╔╝      ███████╗███████╗██║ ╚═╝ ██║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
+[#0041AD]╚═╝  ╚═╝ ╚════╝  ╚═════╝  ╚═════╝       ╚══════╝╚══════╝╚═╝     ╚═╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]""",
+        "banner_hero": """[#0041AD]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[#0041AD]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[#E6B800]⠀⠀⠀⠀⠀⠀⠀⣠⣴⣾⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀[/]
+[#E6B800]⠀⠀⠀⠀⠀⣠⣾⣿⣿⠿⠛⠋⠉⠉⠙⠛⠿⣿⣿⣷⣄⠀⠀⠀⠀[/]
+[#81D4FA]⠀⠀⠀⠀⣴⣿⣿⠟⠁⠀⠀⠀🎓⠀⠀⠀⠈⠻⣿⣿⣦⠀⠀⠀[/]
+[#81D4FA]⠀⠀⠀⣼⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣿⣿⣧⠀⠀[/]
+[#0041AD]⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀⠀AJOU⠀⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀[/]
+[#0041AD]⠀⠀⠀⣿⣿⣿⠀⠀⠀⠀UNIVERSITY⠀⠀⠀⠀⠀⣿⣿⣿⠀⠀[/]
+[#0041AD]⠀⠀⠀⢹⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣿⣿⡏⠀⠀[/]
+[#002F87]⠀⠀⠀⠀⠻⣿⣿⣷⣄⡀⠀⠀⠀⠀⠀⢀⣠⣾⣿⣿⠟⠀⠀⠀⠀[/]
+[#002F87]⠀⠀⠀⠀⠀⠈⠛⠿⣿⣿⣿⣶⣶⣶⣶⣿⣿⠿⠛⠁⠀⠀⠀⠀[/]
+[#002F87]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[#E6B800]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀✨✨⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
+[dim #0041AD]⠀⠀⠀⠀⠀⠀⠀dream big, ajouians⠀⠀⠀⠀⠀⠀⠀[/]""",
+    },
 }
 
 
@@ -734,9 +807,9 @@ def load_skin(name: str) -> SkinConfig:
     if name in _BUILTIN_SKINS:
         return _build_skin_config(_BUILTIN_SKINS[name])
 
-    # Fallback to default
-    logger.warning("Skin '%s' not found, using default", name)
-    return _build_skin_config(_BUILTIN_SKINS["default"])
+    # Fallback to ajou
+    logger.warning("Skin '%s' not found, using ajou", name)
+    return _build_skin_config(_BUILTIN_SKINS["ajou"])
 
 
 def get_active_skin() -> SkinConfig:
@@ -768,7 +841,19 @@ def init_skin_from_config(config: dict) -> None:
     display = config.get("display") or {}
     if not isinstance(display, dict):
         display = {}
+    
     skin_name = display.get("skin", "default")
+    
+    # ── Ajou LLM Auto-Skin ──
+    # If using Ajou LLM provider and skin is default/missing, auto-switch to 'ajou'
+    model_cfg = config.get("model", {})
+    provider = ""
+    if isinstance(model_cfg, dict):
+        provider = (model_cfg.get("provider") or "").strip().lower()
+    
+    if (provider == "ajoullm" or provider == "ajou") and skin_name == "default":
+        skin_name = "ajou"
+
     if isinstance(skin_name, str) and skin_name.strip():
         set_active_skin(skin_name.strip())
     else:

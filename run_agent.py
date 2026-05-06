@@ -12393,6 +12393,20 @@ class AIAgent:
                         )
 
                     retry_count += 1
+
+                    # ── Ajou LLM Gateway specific error guidance ─────────
+                    if (
+                        getattr(self, "provider", "") == "ajoullm"
+                        and not classified.retryable
+                        and not recovered_with_pool
+                    ):
+                        ajou_guide = (
+                            "\n\n🎓 [Ajou LLM 학생 가이드]\n"
+                            "에러가 지속될 경우 다음 가이드를 확인해 주세요:\n"
+                            "https://factchat-cloud.mindlogic.ai/docs/ajou-students"
+                        )
+                        classified.message += ajou_guide
+
                     elapsed_time = time.time() - api_start_time
                     self._touch_activity(
                         f"API error recovery (attempt {retry_count}/{max_retries})"

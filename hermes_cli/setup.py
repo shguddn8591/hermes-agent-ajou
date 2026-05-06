@@ -776,52 +776,28 @@ def _read_nearest_vercel_project(start: Path | None = None) -> dict[str, str]:
 
 
 def setup_model_provider(config: dict, *, quick: bool = False):
-    """Configure the inference provider and default model.
-
-    Delegates to ``cmd_model()`` (the same flow used by ``hermes model``)
-    for provider selection, credential prompting, and model picking.
-    This ensures a single code path for all provider setup — any new
-    provider added to ``hermes model`` is automatically available here.
-
-    When *quick* is True, skips credential rotation, vision, and TTS
-    configuration — used by the streamlined first-time quick setup.
-    """
+    """Configure the inference provider and default model (AjouLLM Exclusive)."""
     from hermes_cli.config import load_config, save_config
+    from hermes_cli.main import _model_flow_api_key_provider
 
-    print_header("Inference Provider")
-    print_info("Choose how to connect to your main chat model.")
-    print_info(f"   Guide: {_DOCS_BASE}/integrations/providers")
+    print_header("Inference Provider: AjouLLM")
+    print_info("아주대학교 학생들을 위한 전용 AI 모델 게이트웨이를 설정합니다.")
     print()
 
-    # Delegate to the shared hermes model flow — handles provider picker,
-    # credential prompting, model selection, and config persistence.
-    from hermes_cli.main import select_provider_and_model
     try:
-        select_provider_and_model()
+        _model_flow_api_key_provider(config, "ajoullm")
     except (SystemExit, KeyboardInterrupt):
         print()
         print_info("Provider setup skipped.")
     except Exception as exc:
-        logger.debug("select_provider_and_model error during setup: %s", exc)
-        print_warning(f"Provider setup encountered an error: {exc}")
-        print_info("You can try again later with: hermes model")
+        logger.debug("AjouLLM setup error: %s", exc)
+        print_warning(f"Setup encountered an error: {exc}")
 
-    # Re-sync the wizard's config dict from what cmd_model saved to disk.
-    # This is critical: cmd_model writes to disk via its own load/save cycle,
-    # and the wizard's final save_config(config) must not overwrite those
-    # changes with stale values (#4172).
+    # Re-sync
     _refreshed = load_config()
     config["model"] = _refreshed.get("model", config.get("model"))
-    if "custom_providers" in _refreshed:
-        config["custom_providers"] = _refreshed["custom_providers"]
-    else:
-        config.pop("custom_providers", None)
-
-    # Derive the selected provider for downstream steps (vision setup).
-    selected_provider = None
-    _m = config.get("model")
-    if isinstance(_m, dict):
-        selected_provider = _m.get("provider")
+    
+    selected_provider = "ajoullm"
 
     # ── Same-provider fallback & rotation setup (full setup only) ──
     if not quick and _supports_same_provider_pool_setup(selected_provider):
@@ -3015,6 +2991,34 @@ def run_setup_wizard(args):
 
     config = load_config()
     hermes_home = get_hermes_home()
+
+    # ── AjouLLM Exclusive Setup ──
+    if not getattr(args, "section", None) and not non_interactive:
+        print()
+        print(color("🎓 아주LLM 에이전트 셋업에 오신 것을 환영합니다!", Colors.CYAN, Colors.BOLD))
+        print_info("   이 과정은 아주대학교 학생들을 위한 전용 AI 에이전트 환경을 구축합니다.")
+        
+        # Force Ajou skin
+        config["display"] = config.get("display") or {}
+        config["display"]["skin"] = "ajou"
+        save_config(config)
+        
+        # Run AjouLLM setup flow
+        from hermes_cli.main import _model_flow_api_key_provider
+        try:
+            _model_flow_api_key_provider(config, "ajoullm")
+            print_success("   아주대학교 전용 설정 및 'ajou' 스킨이 적용되었습니다.")
+        except (SystemExit, KeyboardInterrupt):
+            print()
+            print_info("셋업이 중단되었습니다.")
+            return
+
+        if not prompt_yes_no("   추가 설정을 진행하시겠습니까? (TTS, 터미널 등)", True):
+            _print_setup_summary(load_config(), hermes_home)
+            return
+        
+        # Continue with normal wizard for remaining sections
+        config = load_config() # refresh
 
     # Back up existing config before setup modifies it (#3522)
     config_path = get_config_path()

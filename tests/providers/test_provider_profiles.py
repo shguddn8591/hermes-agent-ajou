@@ -19,6 +19,8 @@ class TestRegistry:
         assert get_provider_profile("nous-portal").name == "nous"
         assert get_provider_profile("qwen").name == "qwen-oauth"
         assert get_provider_profile("qwen-portal").name == "qwen-oauth"
+        assert get_provider_profile("ajou").name == "ajoullm"
+        assert get_provider_profile("factchat").name == "ajoullm"
 
     def test_unknown_provider_returns_none(self):
         assert get_provider_profile("nonexistent-provider") is None
@@ -201,3 +203,13 @@ class TestBaseProfile:
         eb, tl = p.build_api_kwargs_extras()
         assert eb == {}
         assert tl == {}
+
+
+class TestAjouProfile:
+    def test_env_vars(self):
+        p = get_provider_profile("ajoullm")
+        assert p.env_vars == ("AJOULLM_API_KEY", "FACTCHAT_API_KEY")
+
+    def test_base_url(self):
+        p = get_provider_profile("ajoullm")
+        assert p.base_url == "https://factchat-cloud.mindlogic.ai/v1/gateway"

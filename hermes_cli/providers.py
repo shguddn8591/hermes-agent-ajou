@@ -179,6 +179,12 @@ HERMES_OVERLAYS: Dict[str, HermesOverlay] = {
         base_url_override="https://api.arcee.ai/api/v1",
         base_url_env_var="ARCEE_BASE_URL",
     ),
+    "ajoullm": HermesOverlay(
+        transport="openai_chat",
+        extra_env_vars=("AJOULLM_API_KEY", "FACTCHAT_API_KEY"),
+        base_url_override="https://factchat-cloud.mindlogic.ai/v1/gateway",
+        base_url_env_var="AJOULLM_BASE_URL",
+    ),
     "gmi": HermesOverlay(
         transport="openai_chat",
         extra_env_vars=("GMI_API_KEY",),
@@ -251,6 +257,11 @@ ALIASES: Dict[str, str] = {
     "kimi-coding": "kimi-for-coding",
     "kimi-coding-cn": "kimi-for-coding",
     "moonshot": "kimi-for-coding",
+
+    # ajoullm
+    "ajou": "ajoullm",
+    "ajoullm-gateway": "ajoullm",
+    "ajou-llm": "ajoullm",
 
     # stepfun
     "step": "stepfun",
@@ -351,6 +362,7 @@ ALIASES: Dict[str, str] = {
 
 _LABEL_OVERRIDES: Dict[str, str] = {
     "nous": "Nous Portal",
+    "ajoullm": "Ajou LLM Gateway",
     "openai-codex": "OpenAI Codex",
     "copilot-acp": "GitHub Copilot ACP",
     "stepfun": "StepFun Step Plan",

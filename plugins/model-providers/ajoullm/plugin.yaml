@@ -1,0 +1,5 @@
+name: ajoullm-provider
+kind: model-provider
+version: 1.0.0
+description: Ajou University LLM API Gateway (Mindlogic Factchat)
+author: Ajou University
