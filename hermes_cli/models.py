@@ -449,10 +449,19 @@ _PROVIDER_MODELS: dict[str, list[str]] = {
     "azure-foundry": [],
     "ajoullm": [
         "claude-sonnet-4-6",
+        "claude-opus-4-7",
+        "claude-haiku-4-5-20251001",
+        "gemini-2.5-flash",
+        "gemini-2.5-pro",
+        "gemini-3.1-pro-preview",
         "gemini-3-flash-preview",
-        "gemini-3-pro-preview",
+        "gpt-5.4",
         "gpt-5.4-mini",
         "gpt-5.3-codex",
+        "grok-4",
+        "mindlogic-super-agent",
+        "solar-pro3",
+        "LGAI-EXAONE/K-EXAONE-236B-A23B",
     ],
 }
 
@@ -782,12 +791,12 @@ class ProviderEntry(NamedTuple):
     tui_desc: str   # detailed description for `hermes model` TUI
 
 CANONICAL_PROVIDERS: list[ProviderEntry] = [
+    ProviderEntry("ajoullm",        "Ajou LLM Gateway ★",       "Ajou LLM Gateway — 39개 모델, AjouLLM API key로 즉시 사용"),
     ProviderEntry("nous",           "Nous Portal",              "Nous Portal (Nous Research subscription)"),
     ProviderEntry("openrouter",     "OpenRouter",               "OpenRouter (100+ models, pay-per-use)"),
     ProviderEntry("lmstudio",       "LM Studio",                "LM Studio (local desktop app with built-in model server)"),
     ProviderEntry("anthropic",      "Anthropic",                "Anthropic (Claude models — API key or Claude Code)"),
     ProviderEntry("openai-codex",   "OpenAI Codex",             "OpenAI Codex"),
-    ProviderEntry("ajoullm",        "Ajou LLM Gateway",         "Ajou LLM Gateway (Ajou University Students Only)"),
     ProviderEntry("xiaomi",         "Xiaomi MiMo",              "Xiaomi MiMo (MiMo-V2.5 and V2 models — pro, omni, flash)"),
     ProviderEntry("tencent-tokenhub", "Tencent TokenHub",       "Tencent TokenHub (Hy3 Preview — direct API via tokenhub.tencentmaas.com)"),
     ProviderEntry("nvidia",         "NVIDIA NIM",               "NVIDIA NIM (Nemotron models — build.nvidia.com or local NIM)"),
