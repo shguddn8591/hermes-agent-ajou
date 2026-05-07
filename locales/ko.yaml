@@ -1,0 +1,24 @@
+# AjouLLM Agent 정적 메시지 카탈로그 -- 한국어 (Korean)
+# See locales/en.yaml for the source of truth; keep keys in sync.
+
+approval:
+  dangerous_header: "⚠️  위험한 명령어: {description}"
+  choose_long:     "      [o]한 번만  |  [s]이번 세션  |  [a]항상 허용  |  [d]거부"
+  choose_short:    "      [o]한 번만  |  [s]이번 세션  |  [d]거부"
+  prompt_long:     "      선택 [o/s/a/D]: "
+  prompt_short:    "      선택 [o/s/D]: "
+  timeout:         "      ⏱ 시간 초과 — 명령어를 거부했습니다"
+  allowed_once:    "      ✓ 한 번만 허용됨"
+  allowed_session: "      ✓ 이번 세션 동안 허용됨"
+  allowed_always:  "      ✓ 영구 허용 목록에 추가됨"
+  denied:          "      ✗ 거부됨"
+  cancelled:       "      ✗ 취소됨"
+  blocklist_message: "이 명령어는 무조건 차단 목록에 있어 승인할 수 없습니다."
+
+gateway:
+  approval_expired: "⚠️ 승인이 만료되었습니다 (에이전트가 더 이상 대기하지 않습니다). 에이전트에게 다시 시도해 달라고 요청하세요."
+  draining:         "⏳ {count}개의 활성 에이전트가 종료될 때까지 대기 후 재시작합니다..."
+  goal_cleared:     "✓ 목표가 초기화되었습니다."
+  no_active_goal:   "활성화된 목표가 없습니다."
+  config_read_failed: "⚠️ config.yaml을 읽을 수 없습니다: {error}"
+  config_save_failed: "⚠️ 설정을 저장할 수 없습니다: {error}"

@@ -5,10 +5,10 @@
 # AjouLLM Agent ☤
 
 <p align="center">
-  <a href="https://hermes-agent.nousresearch.com/docs/"><img src="https://img.shields.io/badge/Docs-hermes--agent.nousresearch.com-FFD700?style=for-the-badge" alt="Documentation"></a>
-  <a href="https://github.com/NousResearch/hermes-agent/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
-  <a href="https://nousresearch.com"><img src="https://img.shields.io/badge/Built%20by-Nous%20Research-blueviolet?style=for-the-badge" alt="Built by Nous Research"></a>
-  <a href="https://www.ajou.ac.kr"><img src="https://img.shields.io/badge/Exclusive-Ajou%20University-002F87?style=for-the-badge" alt="Ajou University"></a>
+  <a href="https://github.com/shguddn8591/hermes-agent-ajou"><img src="https://img.shields.io/badge/Docs-GitHub%20Wiki-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://github.com/shguddn8591/hermes-agent-ajou/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/NousResearch/hermes-agent"><img src="https://img.shields.io/badge/Based%20on-Hermes%20Agent-blueviolet?style=for-the-badge" alt="Based on Hermes Agent by Nous Research"></a>
+  <a href="https://www.ajou.ac.kr"><img src="https://img.shields.io/badge/For-Ajou%20University-002F87?style=for-the-badge" alt="Ajou University"></a>
 </p>
 
 ---
@@ -90,20 +90,28 @@ hermes              # 터미널에서 대화 시작
 
 ## 📖 Documentation (문서)
 
-자세한 사용법은 공식 문서 사이트를 참고하세요: **[hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/docs/)**
+> AjouLLM Agent 전용 한국어 문서는 현재 준비 중입니다.
+> 기반 기술(Hermes Agent)의 영어 원문 문서를 참고하시되, AjouLLM 전용 설정은 본 README를 우선하세요.
 
-*   **[User Guide](https://hermes-agent.nousresearch.com/docs/user-guide/cli):** CLI 명령어 및 단축키 안내
-*   **[Messaging Gateway](https://hermes-agent.nousresearch.com/docs/user-guide/messaging):** 텔레그램, 디스코드 연동 방법
-*   **[Skills System](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills):** 에이전트의 스킬 생성 및 관리
-*   **[AjouLLM Guide](https://hermes-agent.nousresearch.com/docs/partners/ajou):** 아주대학교 전용 기능 안내 (준비 중)
+*   **[CLI 명령어 안내 (영어)](https://hermes-agent.nousresearch.com/docs/user-guide/cli):** CLI 명령어 및 단축키 (Upstream Hermes 문서)
+*   **[메시징 게이트웨이 (영어)](https://hermes-agent.nousresearch.com/docs/user-guide/messaging):** 텔레그램, 디스코드 연동 방법 (Upstream 문서)
+*   **[스킬 시스템 (영어)](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills):** 에이전트의 스킬 생성 및 관리 (Upstream 문서)
+*   **[AjouLLM 전용 가이드](https://github.com/shguddn8591/hermes-agent-ajou/wiki):** 아주대학교 전용 기능 안내 (준비 중)
 
 ---
 
 ## 🤝 Community & Support
 
-*   💬 **Discord:** [Nous Research Discord](https://discord.gg/NousResearch)
-*   🏢 **Built by:** [Nous Research](https://nousresearch.com) & Ajou University Students
+*   💬 **Issues / 버그 신고:** [GitHub Issues](https://github.com/shguddn8591/hermes-agent-ajou/issues)
+*   🏢 **개발:** 아주대학교 학생 커뮤니티
 *   ⚖️ **License:** MIT License
+
+---
+
+## 🙏 Credits
+
+*   **기반 기술:** [Hermes Agent](https://github.com/NousResearch/hermes-agent) by [Nous Research](https://nousresearch.com) (MIT License)
+*   **LLM 인프라:** [AjouLLM Gateway](https://ajoullm.ajou.ac.kr/) by Mindlogic
 
 ---
 
