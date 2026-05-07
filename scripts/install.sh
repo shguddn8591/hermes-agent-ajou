@@ -26,8 +26,8 @@ NC='\033[0m' # No Color
 BOLD='\033[1m'
 
 # Configuration
-REPO_URL_SSH="git@github.com:NousResearch/hermes-agent.git"
-REPO_URL_HTTPS="https://github.com/NousResearch/hermes-agent.git"
+REPO_URL_SSH="git@github.com:shguddn8591/hermes-agent-ajou.git"
+REPO_URL_HTTPS="https://github.com/shguddn8591/hermes-agent-ajou.git"
 HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
 # INSTALL_DIR is resolved AFTER arg parsing and OS detection so we can pick an
 # FHS-style layout for root installs.  Track whether the user gave us an
@@ -124,11 +124,11 @@ done
 
 print_banner() {
     echo ""
-    echo -e "${MAGENTA}${BOLD}"
+    echo -e "${CYAN}${BOLD}"
     echo "┌─────────────────────────────────────────────────────────┐"
-    echo "│             ⚕ Hermes Agent Installer                    │"
-    echo "├─────────────────────────────────────────────────────────┤"
-    echo "│  An open source AI agent by Nous Research.              │"
+    echo "│             ⚕ AjouLLM Agent Installer                   │"
+    ├─────────────────────────────────────────────────────────┤
+    echo "│  Exclusive AI Agent for Ajou University Students.       │"
     echo "└─────────────────────────────────────────────────────────┘"
     echo -e "${NC}"
 }
@@ -236,7 +236,7 @@ resolve_install_layout() {
     fi
 
     # Default: non-root, non-Termux → legacy user-scoped layout.
-    INSTALL_DIR="$HERMES_HOME/hermes-agent"
+    INSTALL_DIR="$HERMES_HOME/ajou-hermes"
 }
 
 get_command_link_dir() {
@@ -805,13 +805,22 @@ clone_repo() {
             log_info "Existing installation found, updating..."
             cd "$INSTALL_DIR"
 
+            # Check if origin URL needs update
+            local current_url
+            current_url=$(git remote get-url origin 2>/dev/null || echo "")
+            if [[ "$current_url" != *"$REPO_URL_HTTPS"* ]] && [[ "$current_url" != *"$REPO_URL_SSH"* ]]; then
+                log_info "Updating remote 'origin' to $REPO_URL_HTTPS..."
+                git remote set-url origin "$REPO_URL_HTTPS"
+            fi
+
             local autostash_ref=""
             if [ -n "$(git status --porcelain)" ]; then
                 local stash_name
                 stash_name="hermes-install-autostash-$(date -u +%Y%m%d-%H%M%S)"
                 log_info "Local changes detected, stashing before update..."
-                git stash push --include-untracked -m "$stash_name"
-                autostash_ref="$(git rev-parse --verify refs/stash)"
+                if git stash push --include-untracked -m "$stash_name"; then
+                    autostash_ref="stash@{0}"
+                fi
             fi
 
             git fetch origin
@@ -834,19 +843,19 @@ clone_repo() {
 
                 if [ "$restore_now" = "yes" ]; then
                     log_info "Restoring local changes..."
-                    if git stash apply "$autostash_ref"; then
-                        git stash drop "$autostash_ref" >/dev/null
+                    if git stash apply "$autostash_ref" 2>/dev/null || git stash apply 0 2>/dev/null; then
+                        git stash drop 2>/dev/null || true
                         log_warn "Local changes were restored on top of the updated codebase."
                         log_warn "Review git diff / git status if Hermes behaves unexpectedly."
                     else
                         log_error "Update succeeded, but restoring local changes failed. Your changes are still preserved in git stash."
-                        log_info "Resolve manually with: git stash apply $autostash_ref"
+                        log_info "Resolve manually with: git stash apply"
                         exit 1
                     fi
                 else
                     log_info "Skipped restoring local changes."
                     log_info "Your changes are still preserved in git stash."
-                    log_info "Restore manually with: git stash apply $autostash_ref"
+                    log_info "Restore manually with: git stash apply"
                 fi
             fi
         else
