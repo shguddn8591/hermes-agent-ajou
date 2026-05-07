@@ -28,7 +28,7 @@ BOLD='\033[1m'
 # Configuration
 REPO_URL_SSH="git@github.com:shguddn8591/hermes-agent-ajou.git"
 REPO_URL_HTTPS="https://github.com/shguddn8591/hermes-agent-ajou.git"
-HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
+HERMES_HOME="${HERMES_HOME:-$HOME/.ajou-hermes}"
 # INSTALL_DIR is resolved AFTER arg parsing and OS detection so we can pick an
 # FHS-style layout for root installs.  Track whether the user gave us an
 # explicit directory — if so we never override it.
@@ -43,8 +43,8 @@ PYTHON_VERSION="3.11"
 NODE_VERSION="22"
 
 # FHS-style root install layout (set by resolve_install_layout when applicable):
-#   code at /usr/local/lib/hermes-agent, command at /usr/local/bin/hermes,
-#   data still at /root/.hermes (HERMES_HOME).  Matches Claude Code / Codex CLI
+#   code at /usr/local/lib/ajou-hermes, command at /usr/local/bin/hermes,
+#   data still at /root/.ajou-hermes (HERMES_HOME).  Matches Claude Code / Codex CLI
 #   and keeps Docker bind-mounted /root/ volumes lean.
 ROOT_FHS_LAYOUT=false
 
@@ -212,7 +212,7 @@ resolve_install_layout() {
 
     # Termux: package manager manages /data/data/..., keep code in HERMES_HOME.
     if is_termux; then
-        INSTALL_DIR="$HERMES_HOME/hermes-agent"
+        INSTALL_DIR="$HERMES_HOME/code"
         return 0
     fi
 
@@ -220,13 +220,13 @@ resolve_install_layout() {
     # macOS root installs keep the legacy layout because /usr/local/ on macOS
     # is Homebrew territory and we don't want to fight that.
     if [ "$OS" = "linux" ] && [ "$(id -u)" -eq 0 ]; then
-        if [ -d "$HERMES_HOME/hermes-agent/.git" ]; then
-            INSTALL_DIR="$HERMES_HOME/hermes-agent"
+        if [ -d "$HERMES_HOME/code/.git" ]; then
+            INSTALL_DIR="$HERMES_HOME/code"
             log_info "Existing install detected at $INSTALL_DIR — keeping legacy layout"
-            log_info "  (new root installs use /usr/local/lib/hermes-agent)"
+            log_info "  (new root installs use /usr/local/lib/ajou-hermes)"
             return 0
         fi
-        INSTALL_DIR="/usr/local/lib/hermes-agent"
+        INSTALL_DIR="/usr/local/lib/ajou-hermes"
         ROOT_FHS_LAYOUT=true
         log_info "Root install on Linux — using FHS layout"
         log_info "  Code:    $INSTALL_DIR"
@@ -235,8 +235,8 @@ resolve_install_layout() {
         return 0
     fi
 
-    # Default: non-root, non-Termux → legacy user-scoped layout.
-    INSTALL_DIR="$HERMES_HOME/ajou-hermes"
+    # Default: non-root, non-Termux → separate dedicated directory.
+    INSTALL_DIR="$HERMES_HOME/code"
 }
 
 get_command_link_dir() {
